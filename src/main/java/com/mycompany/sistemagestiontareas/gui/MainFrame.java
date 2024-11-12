@@ -58,7 +58,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         jLabel3.setText("Fecha Limite:");
 
-        ftxtFechaLimite.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        ftxtFechaLimite.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.LONG))));
 
         jLabel4.setText("Prioridad:");
 
@@ -166,18 +166,11 @@ public class MainFrame extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
             }
         });
         jScrollPane1.setViewportView(tbTareas);
@@ -228,7 +221,9 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-       String nombre= txtNombre.getText();
+       
+        System.out.println("Que pasa ahoraa");
+        String nombre= txtNombre.getText();
        String fecha= ftxtFechaLimite.getText();
        int prioridad= cmbPrioridad.getSelectedIndex();
         System.out.println(fecha);

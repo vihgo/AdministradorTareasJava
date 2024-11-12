@@ -19,6 +19,7 @@ public class MainFrameController {
     
     public String agregarTarea(String nombre,String fecha,int prioridad, JTable tablaTareas){
        Task nuevaTarea=null;
+        System.out.println("Entra aqui");
        if(!nombre.isBlank()&&!fecha.isBlank()){
            nuevaTarea= new Task(1, nombre, fecha, prioridad);
            DefaultTableModel modelo = (DefaultTableModel) tablaTareas.getModel();
@@ -27,10 +28,10 @@ public class MainFrameController {
             
             modelo.addRow(new Object[]{nuevaTarea.getIdTask(), 
                 nuevaTarea.getNombre(), nuevaTarea.getFechaLimite(),
-                nuevaTarea.getPrioridad()});
+                nuevaTarea.getPrioridad(),false});
            
             System.out.println("se creo una tarea");
-        
+        tablaTareas.get
            
            return "Se ha creado una nueva tarea";
        }
