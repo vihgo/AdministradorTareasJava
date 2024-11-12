@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.mycompany.sistemagestiontareas.gui;
+package com.mycompany.sistemagestiontareas.vista;
 
-import com.mycompany.sistemagestiontareas.logica.MainFrameController;
+import com.mycompany.sistemagestiontareas.controlador.MainFrameController;
 
 
 /**
@@ -25,11 +25,11 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        bgpProyecto = new javax.swing.ButtonGroup();
+        bgProyecto = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txtNombre = new javax.swing.JTextField();
+        txtNombreTarea = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         ftxtFechaLimite = new javax.swing.JFormattedTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -58,7 +58,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         jLabel3.setText("Fecha Limite:");
 
-        ftxtFechaLimite.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        ftxtFechaLimite.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.LONG))));
 
         jLabel4.setText("Prioridad:");
 
@@ -72,7 +72,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         rbProyectoNo.setBackground(jPanel1.getBackground());
-        bgpProyecto.add(rbProyectoNo);
+        bgProyecto.add(rbProyectoNo);
         rbProyectoNo.setSelected(true);
         rbProyectoNo.setText("No");
         rbProyectoNo.addActionListener(new java.awt.event.ActionListener() {
@@ -82,7 +82,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         rbProyectoSi.setBackground(jPanel1.getBackground());
-        bgpProyecto.add(rbProyectoSi);
+        bgProyecto.add(rbProyectoSi);
         rbProyectoSi.setText("Si");
         rbProyectoSi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,7 +110,7 @@ public class MainFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(ftxtFechaLimite)
-                            .addComponent(txtNombre)
+                            .addComponent(txtNombreTarea)
                             .addComponent(cmbPrioridad, 0, 92, Short.MAX_VALUE)))
                     .addComponent(btnAgregar)
                     .addComponent(jLabel5)
@@ -123,7 +123,7 @@ public class MainFrame extends javax.swing.JFrame {
                         .addComponent(lblProyecto)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtNombreProyecto, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,7 +133,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNombreTarea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -162,22 +162,15 @@ public class MainFrame extends javax.swing.JFrame {
 
             },
             new String [] {
-                "id", "Nombre", "Fecha Limite", "Prioridad", "Terminada"
+                "id", "Nombre", "Fecha Limite", "Prioridad", "Proyecto", "Terminada"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
             }
         });
         jScrollPane1.setViewportView(tbTareas);
@@ -187,9 +180,9 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(42, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -203,23 +196,21 @@ public class MainFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(98, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
             .addGroup(layout.createSequentialGroup()
                 .addGap(51, 51, 51)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(126, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         jPanel2.getAccessibleContext().setAccessibleName("Tareasss");
@@ -228,11 +219,13 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-       String nombre= txtNombre.getText();
-       String fecha= ftxtFechaLimite.getText();
-       int prioridad= cmbPrioridad.getSelectedIndex();
+       
+        System.out.println("Que pasa ahoraa");
+        String nombre= txtNombreTarea.getText();
+        String fecha= ftxtFechaLimite.getText();
+        int prioridad= cmbPrioridad.getSelectedIndex();
         System.out.println(fecha);
-       mainFController.agregarTarea(nombre, fecha, prioridad,tbTareas);
+        mainFController.agregarTarea(nombre, fecha, prioridad,tbTareas);
        
        
        
@@ -251,7 +244,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup bgpProyecto;
+    private javax.swing.ButtonGroup bgProyecto;
     private javax.swing.JButton btnAgregar;
     private javax.swing.JComboBox<String> cmbPrioridad;
     private javax.swing.JFormattedTextField ftxtFechaLimite;
@@ -267,7 +260,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbProyectoNo;
     private javax.swing.JRadioButton rbProyectoSi;
     private javax.swing.JTable tbTareas;
-    private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtNombreProyecto;
+    private javax.swing.JTextField txtNombreTarea;
     // End of variables declaration//GEN-END:variables
 }

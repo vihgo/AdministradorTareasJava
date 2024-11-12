@@ -2,24 +2,40 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.sistemagestiontareas.logica;
+package com.mycompany.sistemagestiontareas.controlador;
+import com.mycompany.sistemagestiontareas.modelo.Proyecto;
+import com.mycompany.sistemagestiontareas.modelo.Proyecto;
+import com.mycompany.sistemagestiontareas.modelo.Task;
+import com.mycompany.sistemagestiontareas.modelo.Task;
+import java.util.ArrayList;
 import javax.swing.JTable;
-
-import java.time.LocalDate;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import javax.swing.JCheckBox;
+
 
 /**
  *
  * @author melipilla
  */
 public class MainFrameController {
+    private ArrayList<Proyecto> proyectos;
     
+    public void crearProyecto(String nombre){
+        Proyecto nuevoProyecto=null;
+        int ultimoId=0;
+        if(proyectos.size()!=0)
+            ultimoId= proyectos.size();
+        
+        ultimoId+=1;
+        nuevoProyecto=new Proyecto();
+        nuevoProyecto.setIdProyecto(ultimoId);
+        nuevoProyecto.setNombre(nombre);
+        proyectos.add(nuevoProyecto);
+
+    }
     
     public String agregarTarea(String nombre,String fecha,int prioridad, JTable tablaTareas){
-       Task nuevaTarea=null;
-       if(!nombre.isBlank()&&!fecha.isBlank()){
+        Task nuevaTarea=null;//Task es tarea en ingles
+        if(!nombre.isBlank()&&!fecha.isBlank()){
            nuevaTarea= new Task(1, nombre, fecha, prioridad);
            DefaultTableModel modelo = (DefaultTableModel) tablaTareas.getModel();
            
@@ -27,7 +43,7 @@ public class MainFrameController {
             
             modelo.addRow(new Object[]{nuevaTarea.getIdTask(), 
                 nuevaTarea.getNombre(), nuevaTarea.getFechaLimite(),
-                nuevaTarea.getPrioridad()});
+                nuevaTarea.getPrioridad(),nuevaTarea.isCompletada()});
            
             System.out.println("se creo una tarea");
         
