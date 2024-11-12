@@ -8,6 +8,7 @@ import javax.swing.JTable;
 import java.time.LocalDate;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import javax.swing.JCheckBox;
 
 /**
  *
@@ -23,10 +24,11 @@ public class MainFrameController {
            DefaultTableModel modelo = (DefaultTableModel) tablaTareas.getModel();
            
             // Agregar filas al modelo de la tabla
+            
             modelo.addRow(new Object[]{nuevaTarea.getIdTask(), 
                 nuevaTarea.getNombre(), nuevaTarea.getFechaLimite(),
                 nuevaTarea.getPrioridad()});
-            
+           
             System.out.println("se creo una tarea");
         
            
