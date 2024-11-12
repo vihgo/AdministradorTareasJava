@@ -31,7 +31,7 @@ public class MainFrameController {
                 nuevaTarea.getPrioridad(),false});
            
             System.out.println("se creo una tarea");
-        tablaTareas.get
+        
            
            return "Se ha creado una nueva tarea";
        }
