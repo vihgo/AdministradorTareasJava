@@ -53,32 +53,46 @@ public class MainFrameController {
             public void actionPerformed(ActionEvent e){
                 String nombre= mainFrame.getTxtNombreTarea().getText();
                 String fecha= mainFrame.getFtxtFechaLimite().getText();
+                String nombreProyecto= mainFrame.getTxtNombreProyecto().getText();
                 int prioridad=  mainFrame.getCmbPrioridad().getSelectedIndex();
                 System.out.println(fecha);
-                crearTarea(nombre, fecha, prioridad);
+                crearTarea(nombre, fecha, prioridad,nombreProyecto);
             }
         });
     }
-    public void crearProyecto(String nombre){
-        Proyecto nuevoProyecto=null;
-        int ultimoId=0;
-        if(proyectos.size()!=0)
+    
+    
+    public Proyecto obtenerProyecto(String nombreProyecto){
+         
+        
+        for(Proyecto proyecto :proyectos){
+            if(nombreProyecto.equalsIgnoreCase(proyecto.getNombre())){
+               //si hay un proyecto con el mismo nombre, retorna ese proyecto.
+               return proyecto;
+            }
+        }
+        //si no hay un proyecto con el mismo nombre se crea uno y se agregaa la lista
+       int ultimoId=0;
+        if(!proyectos.isEmpty())
             ultimoId= proyectos.size();
         
         ultimoId+=1;
-        nuevoProyecto=new Proyecto();
+        Proyecto  nuevoProyecto=new Proyecto();
         nuevoProyecto.setIdProyecto(ultimoId);
-        nuevoProyecto.setNombre(nombre);
+        nuevoProyecto.setNombre(nombreProyecto);
         proyectos.add(nuevoProyecto);
+        return nuevoProyecto;
 
     }
     
-    public String crearTarea(String nombre,String fecha,int prioridad){
+    public String crearTarea(String nombre,String fecha,int prioridad,String nombreProyecto){
       
         if(!nombre.isBlank()&&!fecha.isBlank()){
-            Task nuevaTarea= new Task(1, nombre, fecha, prioridad);
             
-            
+            Proyecto proyecto=obtenerProyecto(nombreProyecto);
+            int ultimoId= proyecto.obtenerUltimoIdTarea()+1;
+            Task nuevaTarea= new Task(ultimoId, nombre, fecha, prioridad);
+            proyecto.agregarTarea(nuevaTarea);
            
         
            

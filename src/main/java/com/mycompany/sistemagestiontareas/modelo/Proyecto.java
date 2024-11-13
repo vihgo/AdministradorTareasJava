@@ -63,10 +63,10 @@ public class Proyecto {
         }
         return null;
     }
-    public Task obtenerUltimaTarea(){
-        if(tareas.size()>0)
-            return tareas.get(tareas.size()-1);
-        return null;
+    public int obtenerUltimoIdTarea(){
+        if(!tareas.isEmpty())
+            return tareas.get(tareas.size()-1).getIdTask();
+        return 0;
     }
     
 }
