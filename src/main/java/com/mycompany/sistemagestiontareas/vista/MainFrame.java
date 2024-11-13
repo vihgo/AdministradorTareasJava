@@ -5,6 +5,13 @@
 package com.mycompany.sistemagestiontareas.vista;
 
 import com.mycompany.sistemagestiontareas.controlador.MainFrameController;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
+import javax.swing.JLabel;
+import javax.swing.JRadioButton;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 
 
 /**
@@ -20,8 +27,44 @@ public class MainFrame extends javax.swing.JFrame {
         txtNombreProyecto.setVisible(false);
     }
 
-  
-    @SuppressWarnings("unchecked")
+    public JButton getBtnAgregar() {
+        return btnAgregar;
+    }
+
+    public JComboBox<String> getCmbPrioridad() {
+        return cmbPrioridad;
+    }
+
+    public JFormattedTextField getFtxtFechaLimite() {
+        return ftxtFechaLimite;
+    }
+
+    public JLabel getLblProyecto() {
+        return lblProyecto;
+    }
+
+    public JRadioButton getRbProyectoNo() {
+        return rbProyectoNo;
+    }
+
+    public JRadioButton getRbProyectoSi() {
+        return rbProyectoSi;
+    }
+
+    public JTable getTbTareas() {
+        return tbTareas;
+    }
+
+    public JTextField getTxtNombreProyecto() {
+        return txtNombreProyecto;
+    }
+
+    public JTextField getTxtNombreTarea() {
+        return txtNombreTarea;
+    }
+
+    
+
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -220,26 +263,18 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
        
-        System.out.println("Que pasa ahoraa");
-        String nombre= txtNombreTarea.getText();
-        String fecha= ftxtFechaLimite.getText();
-        int prioridad= cmbPrioridad.getSelectedIndex();
-        System.out.println(fecha);
-        mainFController.agregarTarea(nombre, fecha, prioridad,tbTareas);
+       
        
        
        
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void rbProyectoNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbProyectoNoActionPerformed
-        lblProyecto.setVisible(false);
-        txtNombreProyecto.setText("");
-        txtNombreProyecto.setVisible(false);
+        
     }//GEN-LAST:event_rbProyectoNoActionPerformed
 
     private void rbProyectoSiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbProyectoSiActionPerformed
-        lblProyecto.setVisible(true);
-        txtNombreProyecto.setVisible(true);
+        
     }//GEN-LAST:event_rbProyectoSiActionPerformed
 
     
