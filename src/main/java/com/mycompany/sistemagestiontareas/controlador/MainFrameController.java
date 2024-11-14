@@ -7,27 +7,28 @@ package com.mycompany.sistemagestiontareas.controlador;
 import com.mycompany.sistemagestiontareas.modelo.Proyecto;
 import com.mycompany.sistemagestiontareas.modelo.Task;
 import com.mycompany.sistemagestiontareas.vista.MainFrame;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+//el controlador debe  tener acceso a servicios en el modelo que modifican los datos y a los servicios de las vistas que modifican la GUI. La principal tarea de los controladores es coordinar el flujo de la aplicación.
 
 /**
  *
  * @author melipilla
  */
+//implementar patron dao para manejar el acceso a los datos: https://www.tutorialspoint.com/design_pattern/data_access_object_pattern.htm
 public class MainFrameController {
     private ArrayList<Proyecto> proyectos;
     private MainFrame mainFrame;
+    
     public MainFrameController(){
         proyectos= new ArrayList();
     }
     public MainFrameController(MainFrame mainFrame){
         this.mainFrame=mainFrame;
         proyectos= new ArrayList();
+        agregarListeners();
     }
     
     
@@ -62,7 +63,7 @@ public class MainFrameController {
     }
     
     
-    public Proyecto obtenerProyecto(String nombreProyecto){
+    private Proyecto obtenerProyecto(String nombreProyecto){
          
         
         for(Proyecto proyecto :proyectos){
@@ -84,6 +85,16 @@ public class MainFrameController {
         return nuevoProyecto;
 
     }
+    //este metodo podria estar en la vista y recibir los parametros con los datos para que sea llamado solamente desde el controlador
+    private void agregarFila(Task nuevaTarea,String nombreProyecto){
+        DefaultTableModel modelo = (DefaultTableModel) mainFrame.getTbTareas().getModel();
+           
+            
+            modelo.addRow(new Object[]{nuevaTarea.getIdTask(), 
+                nuevaTarea.getNombre(), nuevaTarea.getFechaLimite(),
+                nuevaTarea.getPrioridad(),nombreProyecto,nuevaTarea.isCompletada()});
+        
+    }
     
     public String crearTarea(String nombre,String fecha,int prioridad,String nombreProyecto){
       
@@ -93,22 +104,13 @@ public class MainFrameController {
             int ultimoId= proyecto.obtenerUltimoIdTarea()+1;
             Task nuevaTarea= new Task(ultimoId, nombre, fecha, prioridad);
             proyecto.agregarTarea(nuevaTarea);
-           
+            agregarFila(nuevaTarea,proyecto.getNombre());
         
            
             return "Se ha creado una nueva tarea";
        }
        return "No se ha podido crear la tarea";
     }
-    private void agregarFila(Task nuevaTarea){
-        DefaultTableModel modelo = (DefaultTableModel) mainFrame.getTbTareas().getModel();
-           
-            // Agregar filas al modelo de la tabla
-            
-            modelo.addRow(new Object[]{nuevaTarea.getIdTask(), 
-                nuevaTarea.getNombre(), nuevaTarea.getFechaLimite(),
-                nuevaTarea.getPrioridad(),nuevaTarea.isCompletada()});
-        
-    }
+    
     
 }
