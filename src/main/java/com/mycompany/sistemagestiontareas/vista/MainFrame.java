@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 
 /**
@@ -63,7 +64,23 @@ public class MainFrame extends javax.swing.JFrame {
         return txtNombreTarea;
     }
 
+    public void ocultarCamposProyecto(){
+        lblProyecto.setVisible(false);
+        txtNombreProyecto.setText("");
+        txtNombreProyecto.setVisible(false);
+    }
+    public void mostrarCamposProyecto(){
+        lblProyecto.setVisible(true);
+        txtNombreProyecto.setVisible(true);
+
+    }
+    public void agregarDatosTabla(int idTarea,String nombreTarea,String fechaLimite,int prioridad,String nombreProyecto,boolean estadoTarea){
+        DefaultTableModel modelo = (DefaultTableModel) tbTareas.getModel();
+            modelo.addRow(new Object[]{idTarea, nombreTarea,fechaLimite,
+                prioridad,nombreProyecto,estadoTarea});
+    }
     
+
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -101,7 +118,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         jLabel3.setText("Fecha Limite:");
 
-        ftxtFechaLimite.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.LONG))));
+        ftxtFechaLimite.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
 
         jLabel4.setText("Prioridad:");
 

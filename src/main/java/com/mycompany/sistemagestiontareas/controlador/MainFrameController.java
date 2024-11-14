@@ -5,7 +5,7 @@
 package com.mycompany.sistemagestiontareas.controlador;
 
 import com.mycompany.sistemagestiontareas.modelo.Proyecto;
-import com.mycompany.sistemagestiontareas.modelo.Task;
+import com.mycompany.sistemagestiontareas.modelo.Tarea;
 import com.mycompany.sistemagestiontareas.vista.MainFrame;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -36,16 +36,13 @@ public class MainFrameController {
         mainFrame.getRbProyectoNo().addActionListener(new ActionListener(){ 
             @Override
              public void actionPerformed(ActionEvent e) {
-                mainFrame.getLblProyecto().setVisible(false);
-                mainFrame.getTxtNombreProyecto().setText("");
-                mainFrame.getTxtNombreProyecto().setVisible(false);
+                mainFrame.ocultarCamposProyecto();
             }
         });
         mainFrame.getRbProyectoSi().addActionListener(new ActionListener(){ 
             @Override
              public void actionPerformed(ActionEvent e) {
-                mainFrame.getLblProyecto().setVisible(true);
-                mainFrame.getTxtNombreProyecto().setVisible(true);
+                mainFrame.mostrarCamposProyecto();
             }
         });
         
@@ -56,7 +53,7 @@ public class MainFrameController {
                 String fecha= mainFrame.getFtxtFechaLimite().getText();
                 String nombreProyecto= mainFrame.getTxtNombreProyecto().getText();
                 int prioridad=  mainFrame.getCmbPrioridad().getSelectedIndex();
-                System.out.println(fecha);
+                //System.out.println(fecha);
                 crearTarea(nombre, fecha, prioridad,nombreProyecto);
             }
         });
@@ -75,7 +72,7 @@ public class MainFrameController {
         //si no hay un proyecto con el mismo nombre se crea uno y se agregaa la lista
        int ultimoId=0;
         if(!proyectos.isEmpty())
-            ultimoId= proyectos.size();
+            ultimoId= proyectos.size()-1;
         
         ultimoId+=1;
         Proyecto  nuevoProyecto=new Proyecto();
@@ -86,13 +83,9 @@ public class MainFrameController {
 
     }
     //este metodo podria estar en la vista y recibir los parametros con los datos para que sea llamado solamente desde el controlador
-    private void agregarFila(Task nuevaTarea,String nombreProyecto){
-        DefaultTableModel modelo = (DefaultTableModel) mainFrame.getTbTareas().getModel();
-           
-            
-            modelo.addRow(new Object[]{nuevaTarea.getIdTask(), 
-                nuevaTarea.getNombre(), nuevaTarea.getFechaLimite(),
-                nuevaTarea.getPrioridad(),nombreProyecto,nuevaTarea.isCompletada()});
+    private void agregarFila(Tarea nuevaTarea,String nombreProyecto)
+    {
+      //  mainFrame.agregarDatosTabla(0, nombreProyecto, nombreProyecto, 0, nombreProyecto, true);
         
     }
     
@@ -102,7 +95,7 @@ public class MainFrameController {
             
             Proyecto proyecto=obtenerProyecto(nombreProyecto);
             int ultimoId= proyecto.obtenerUltimoIdTarea()+1;
-            Task nuevaTarea= new Task(ultimoId, nombre, fecha, prioridad);
+            Tarea nuevaTarea= new Tarea(ultimoId, nombre, fecha, prioridad);
             proyecto.agregarTarea(nuevaTarea);
             agregarFila(nuevaTarea,proyecto.getNombre());
         

@@ -7,7 +7,7 @@ package com.mycompany.sistemagestiontareas.modelo;
 import java.time.LocalDate;
 
 
-public class Task 
+public class Tarea 
 {
     private int idTask;
     private String nombre;
@@ -15,14 +15,14 @@ public class Task
     private int prioridad;
     private boolean completada;
 
-    public Task() {
+    public Tarea() {
         idTask=0;
         nombre="";
         prioridad=0;
         completada=false;
     }
 
-    public Task(int idTask, String nombre, String fechaLimite, int prioridad) {
+    public Tarea(int idTask, String nombre, String fechaLimite, int prioridad) {
         this.idTask = idTask;
         this.nombre = nombre;
         this.fechaLimite = fechaLimite;

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class Proyecto {
     private int idProyecto;
     private String nombre;
-    private ArrayList<Task>tareas;
+    private ArrayList<Tarea>tareas;
 
     public Proyecto() {
         tareas= new ArrayList();
@@ -15,7 +15,7 @@ public class Proyecto {
         nombre="";
     }
 
-    public Proyecto(int idProyecto, String nombre, ArrayList<Task> tareas) {
+    public Proyecto(int idProyecto, String nombre, ArrayList<Tarea> tareas) {
         this.idProyecto = idProyecto;
         this.nombre = nombre;
         this.tareas = tareas;
@@ -37,18 +37,18 @@ public class Proyecto {
         this.nombre = nombre;
     }
 
-    public ArrayList<Task> getTareas() {
+    public ArrayList<Tarea> getTareas() {
         return tareas;
     }
 
-    public void setTareas(ArrayList<Task> tareas) {
+    public void setTareas(ArrayList<Tarea> tareas) {
         this.tareas = tareas;
     }
     
-    public void agregarTarea(Task tarea){
+    public void agregarTarea(Tarea tarea){
         tareas.add(tarea);
     }
-    public boolean eliminarTarea(Task tarea){
+    public boolean eliminarTarea(Tarea tarea){
         if(tareas.contains(tarea)){
             tareas.remove(tarea);
             return true;
@@ -56,8 +56,8 @@ public class Proyecto {
         else
             return false;
     }
-    public Task obtenerTarea(int idTarea){
-        for(Task tarea:tareas){
+    public Tarea obtenerTarea(int idTarea){
+        for(Tarea tarea:tareas){
             if(idTarea==tarea.getIdTask())
                 return tarea;
         }
