@@ -33,7 +33,7 @@ public class AdministradorListaProyectos implements ProyectoDao{
     }
 
     @Override
-    public List<Proyecto> obtenerTodosLosProyectos() {
+    public ArrayList<Proyecto> obtenerTodosLosProyectos() {
         return proyectos;
         
     }

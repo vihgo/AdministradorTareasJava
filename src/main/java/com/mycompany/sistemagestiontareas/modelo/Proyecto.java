@@ -45,8 +45,16 @@ public class Proyecto {
         this.tareas = tareas;
     }
     
-    public void agregarTarea(Tarea tarea){
-        tareas.add(tarea);
+    public Tarea agregarTarea(String nombreTarea,String fechaLimite,int prioridad){
+        if(!nombreTarea.isBlank()&&!fechaLimite.isBlank()){
+            
+           
+            int ultimoId= obtenerUltimoIdTarea()+1;
+            Tarea nuevaTarea= new Tarea(ultimoId, nombre, fechaLimite, prioridad);
+            tareas.add(nuevaTarea);
+            return nuevaTarea;
+        }
+        return null;
     }
     public boolean eliminarTarea(Tarea tarea){
         if(tareas.contains(tarea)){

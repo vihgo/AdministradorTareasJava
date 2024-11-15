@@ -4,11 +4,13 @@
  */
 package com.mycompany.sistemagestiontareas.controlador;
 
+import com.mycompany.sistemagestiontareas.modelo.AdministradorListaProyectos;
 import com.mycompany.sistemagestiontareas.modelo.Proyecto;
+import com.mycompany.sistemagestiontareas.modelo.ProyectoDao;
 import com.mycompany.sistemagestiontareas.modelo.Tarea;
+
 import com.mycompany.sistemagestiontareas.vista.MainFrame;
 import java.util.ArrayList;
-import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 //el controlador debe  tener acceso a servicios en el modelo que modifican los datos y a los servicios de las vistas que modifican la GUI. La principal tarea de los controladores es coordinar el flujo de la aplicación.
@@ -21,13 +23,16 @@ import java.awt.event.ActionListener;
 public class MainFrameController {
     private ArrayList<Proyecto> proyectos;
     private MainFrame mainFrame;
+    private ProyectoDao proyectoDao;
     
     public MainFrameController(){
         proyectos= new ArrayList();
+        proyectoDao= new AdministradorListaProyectos();
     }
     public MainFrameController(MainFrame mainFrame){
         this.mainFrame=mainFrame;
         proyectos= new ArrayList();
+        proyectoDao= new AdministradorListaProyectos();
         agregarListeners();
     }
     
@@ -53,57 +58,17 @@ public class MainFrameController {
                 String fecha= mainFrame.getFtxtFechaLimite().getText();
                 String nombreProyecto= mainFrame.getTxtNombreProyecto().getText();
                 int prioridad=  mainFrame.getCmbPrioridad().getSelectedIndex();
-                //System.out.println(fecha);
-                crearTarea(nombre, fecha, prioridad,nombreProyecto);
+                Proyecto nuevoProyecto=proyectoDao.crearProyecto(nombreProyecto);
+                Tarea nuevaTarea= nuevoProyecto.agregarTarea(nombre, fecha, prioridad);
+                mainFrame.agregarDatosTabla(nuevaTarea.getPrioridad(), nuevaTarea.getNombre(), nuevaTarea.getFechaLimite(), nuevaTarea.getPrioridad(), nuevoProyecto.getNombre(), nuevaTarea.isCompletada());
+                
+                
+                
             }
         });
     }
     
     
-    private Proyecto obtenerProyecto(String nombreProyecto){
-         
-        
-        for(Proyecto proyecto :proyectos){
-            if(nombreProyecto.equalsIgnoreCase(proyecto.getNombre())){
-               //si hay un proyecto con el mismo nombre, retorna ese proyecto.
-               return proyecto;
-            }
-        }
-        //si no hay un proyecto con el mismo nombre se crea uno y se agregaa la lista
-       int ultimoId=0;
-        if(!proyectos.isEmpty())
-            ultimoId= proyectos.size()-1;
-        
-        ultimoId+=1;
-        Proyecto  nuevoProyecto=new Proyecto();
-        nuevoProyecto.setIdProyecto(ultimoId);
-        nuevoProyecto.setNombre(nombreProyecto);
-        proyectos.add(nuevoProyecto);
-        return nuevoProyecto;
-
-    }
-    //este metodo podria estar en la vista y recibir los parametros con los datos para que sea llamado solamente desde el controlador
-    private void agregarFila(Tarea nuevaTarea,String nombreProyecto)
-    {
-      //  mainFrame.agregarDatosTabla(0, nombreProyecto, nombreProyecto, 0, nombreProyecto, true);
-        
-    }
-    
-    public String crearTarea(String nombre,String fecha,int prioridad,String nombreProyecto){
-      
-        if(!nombre.isBlank()&&!fecha.isBlank()){
-            
-            Proyecto proyecto=obtenerProyecto(nombreProyecto);
-            int ultimoId= proyecto.obtenerUltimoIdTarea()+1;
-            Tarea nuevaTarea= new Tarea(ultimoId, nombre, fecha, prioridad);
-            proyecto.agregarTarea(nuevaTarea);
-            agregarFila(nuevaTarea,proyecto.getNombre());
-        
-           
-            return "Se ha creado una nueva tarea";
-       }
-       return "No se ha podido crear la tarea";
-    }
     
     
 }

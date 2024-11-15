@@ -5,7 +5,7 @@
 package com.mycompany.sistemagestiontareas.modelo;
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 /**
  *
@@ -14,7 +14,7 @@ import java.util.List;
 public interface ProyectoDao {
     
     Proyecto crearProyecto(String nombre);
-    List obtenerTodosLosProyectos();
+    ArrayList obtenerTodosLosProyectos();
     String eliminarProyecto(Proyecto proyecto);
     Proyecto actualizarProyecto(int id,String nombre,ArrayList<Tarea>  tareas);
     
