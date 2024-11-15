@@ -14,8 +14,8 @@ import java.util.ArrayList;
 public interface ProyectoDao {
     
     Proyecto crearProyecto(String nombre);
-    ArrayList obtenerTodosLosProyectos();
+    ArrayList<Proyecto> obtenerTodosLosProyectos();
     String eliminarProyecto(Proyecto proyecto);
     Proyecto actualizarProyecto(int id,String nombre,ArrayList<Tarea>  tareas);
-    
+    ArrayList<Tarea> filtrarTareasPorProyecto(String nombreProyecto);
 }

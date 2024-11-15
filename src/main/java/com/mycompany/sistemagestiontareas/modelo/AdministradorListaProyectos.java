@@ -20,8 +20,15 @@ public class AdministradorListaProyectos implements ProyectoDao{
     
     @Override
     public Proyecto crearProyecto(String nombre) {
+        
+        for(Proyecto miProyecto:proyectos){
+            if(nombre.equalsIgnoreCase(miProyecto.getNombre()))
+                return miProyecto;
+        }
+        
+        
         int idProyecto=1;
-        if(!proyectos.isEmpty())
+        if(!proyectos.isEmpty())//si el arraylist de proyectos no está vacio
             idProyecto=proyectos.size()+1;
         
         Proyecto  nuevoProyecto=new Proyecto();
@@ -59,6 +66,15 @@ public class AdministradorListaProyectos implements ProyectoDao{
            }
        }
        return null;
+    }
+
+    @Override
+    public ArrayList<Tarea> filtrarTareasPorProyecto(String nombreProyecto) {
+        for(Proyecto miProyecto:proyectos){
+            if(miProyecto.getNombre().equalsIgnoreCase(nombreProyecto))
+                return miProyecto.getTareas();
+        }
+        return null;
     }
     
 }

@@ -4,7 +4,7 @@
  */
 package com.mycompany.sistemagestiontareas.vista;
 
-import com.mycompany.sistemagestiontareas.controlador.MainFrameController;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
@@ -21,7 +21,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class MainFrame extends javax.swing.JFrame {
 
-    MainFrameController mainFController= new MainFrameController();
+    
+    
     public MainFrame() {
         initComponents();
         lblProyecto.setVisible(false);
@@ -76,8 +77,8 @@ public class MainFrame extends javax.swing.JFrame {
     }
     public void agregarDatosTabla(int idTarea,String nombreTarea,String fechaLimite,int prioridad,String nombreProyecto,boolean estadoTarea){
         DefaultTableModel modelo = (DefaultTableModel) tbTareas.getModel();
-            modelo.addRow(new Object[]{idTarea, nombreTarea,fechaLimite,
-                prioridad,nombreProyecto,estadoTarea});
+        modelo.addRow(new Object[]{idTarea, nombreTarea,fechaLimite,
+            prioridad,nombreProyecto,estadoTarea});
     }
     
 

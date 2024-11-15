@@ -4,12 +4,12 @@
  */
 package com.mycompany.sistemagestiontareas.controlador;
 
-import com.mycompany.sistemagestiontareas.modelo.AdministradorListaProyectos;
-import com.mycompany.sistemagestiontareas.modelo.Proyecto;
-import com.mycompany.sistemagestiontareas.modelo.ProyectoDao;
-import com.mycompany.sistemagestiontareas.modelo.Tarea;
+//ESTO IMPORTA LAS CLASES DEL MODELO
+import com.mycompany.sistemagestiontareas.modelo.*;
 
+//ESTO IMPORTA LA CLASE DE LA INTERFAZ
 import com.mycompany.sistemagestiontareas.vista.MainFrame;
+
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,17 +21,18 @@ import java.awt.event.ActionListener;
  */
 //implementar patron dao para manejar el acceso a los datos: https://www.tutorialspoint.com/design_pattern/data_access_object_pattern.htm
 public class MainFrameController {
-    private ArrayList<Proyecto> proyectos;
+
     private MainFrame mainFrame;
     private ProyectoDao proyectoDao;
     
     public MainFrameController(){
-        proyectos= new ArrayList();
+       
         proyectoDao= new AdministradorListaProyectos();
+        agregarListeners();
     }
     public MainFrameController(MainFrame mainFrame){
         this.mainFrame=mainFrame;
-        proyectos= new ArrayList();
+
         proyectoDao= new AdministradorListaProyectos();
         agregarListeners();
     }
@@ -60,7 +61,8 @@ public class MainFrameController {
                 int prioridad=  mainFrame.getCmbPrioridad().getSelectedIndex();
                 Proyecto nuevoProyecto=proyectoDao.crearProyecto(nombreProyecto);
                 Tarea nuevaTarea= nuevoProyecto.agregarTarea(nombre, fecha, prioridad);
-                mainFrame.agregarDatosTabla(nuevaTarea.getPrioridad(), nuevaTarea.getNombre(), nuevaTarea.getFechaLimite(), nuevaTarea.getPrioridad(), nuevoProyecto.getNombre(), nuevaTarea.isCompletada());
+            
+                mainFrame.agregarDatosTabla(nuevaTarea.getIdTask(), nuevaTarea.getNombre(), nuevaTarea.getFechaLimite(), nuevaTarea.getPrioridad(), nuevoProyecto.getNombre(), nuevaTarea.isCompletada());
                 
                 
                 

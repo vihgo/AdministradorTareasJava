@@ -50,7 +50,7 @@ public class Proyecto {
             
            
             int ultimoId= obtenerUltimoIdTarea()+1;
-            Tarea nuevaTarea= new Tarea(ultimoId, nombre, fechaLimite, prioridad);
+            Tarea nuevaTarea= new Tarea(ultimoId, nombreTarea, fechaLimite, prioridad);
             tareas.add(nuevaTarea);
             return nuevaTarea;
         }
